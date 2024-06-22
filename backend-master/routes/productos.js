@@ -9,6 +9,12 @@ router.get('/', verifyToken, isUser, (req, res) => {
   productosController.getProductos(req, res);
 });
 
+router.get('/activos', verifyToken, isUser, (req, res) => {
+  /* #swagger.summary = 'Obtiene la lista de productos no borrados' */
+  /* #swagger.tags = ['Productos'] */
+  productosController.getProductosActivos(req, res);
+});
+
 router.get('/:id', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Obtiene un producto por ID' */
   /* #swagger.tags = ['Productos'] */
@@ -47,6 +53,14 @@ router.delete('/:id', verifyToken, isAdmin, (req, res) => {
   /* #swagger.security = [{ "BearerAuth": [] }] */
   /* #swagger.parameters['id'] = { description: 'ID del producto', type: 'integer', required: true } */
   productosController.deleteProducto(req, res);
+});
+
+router.put('/activar/:id', verifyToken, isAdmin, (req, res) => {
+  /* #swagger.summary = 'Reactivar un producto previamente borrado' */
+  /* #swagger.tags = ['Productos'] */
+  /* #swagger.security = [{ "BearerAuth": [] }] */
+  /* #swagger.parameters['id'] = { description: 'ID del producto', type: 'integer', required: true } */
+  productosController.activateProducto(req, res);
 });
 
 module.exports = router;

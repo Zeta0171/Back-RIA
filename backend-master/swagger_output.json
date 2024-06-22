@@ -387,6 +387,33 @@
         ]
       }
     },
+    "/productos/activos": {
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Obtiene la lista de productos no borrados",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/productos/{id}": {
       "get": {
         "tags": [
@@ -476,6 +503,48 @@
           "Productos"
         ],
         "summary": "Elimina un producto",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del producto"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/productos/activar/{id}": {
+      "put": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Reactivar un producto previamente borrado",
         "description": "",
         "parameters": [
           {
