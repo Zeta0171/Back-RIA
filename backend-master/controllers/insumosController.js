@@ -1,7 +1,7 @@
 let insumos = [
-    { id: 1, nombre: 'Insumo 1', descripcion: 'Descripción 1', unidad_medida: 'kg' },
-    { id: 2, nombre: 'Insumo 2', descripcion: 'Descripción 2', unidad_medida: 'litros' },
-    { id: 3, nombre: 'Insumo 3', descripcion: 'Descripción 3', unidad_medida: 'metros' }
+    { id: 1, nombre: 'Pan integral', descripcion: 'Descripción 1', unidad_medida: 'kg' },
+    { id: 2, nombre: 'Leche entera', descripcion: 'Descripción 2', unidad_medida: 'litros' },
+    { id: 3, nombre: 'Mayonesa', descripcion: 'Descripción 3', unidad_medida: 'metros' }
 ];
 
 exports.getInsumos = (req, res) => {
