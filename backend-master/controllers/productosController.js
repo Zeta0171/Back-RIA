@@ -1,7 +1,18 @@
+const fs = require('fs');
+const path = require('path');
+
+// Función para convertir una imagen a base64
+const imageToBase64 = (filePath) => {
+  return fs.readFileSync(filePath, { encoding: 'base64' });
+};
+
+// Ruta de las imágenes
+const imagesDir = path.join(__dirname, '../imagenes');
+
 let productos = [
-  { id: 1, nombre: 'Producto 1', descripcion: 'Descripción 1', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 10.0, insumos: [{ insumoId: 1, cantidad: 2 }, { insumoId: 2, cantidad: 1 }], borrado: false },
-  { id: 2, nombre: 'Producto 2', descripcion: 'Descripción 2', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 20.0, insumos: [{ insumoId: 3, cantidad: 4 }], borrado: false },
-  { id: 3, nombre: 'Producto 3', descripcion: 'Descripción 3', imagen: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', precio: 25.0, insumos: [], borrado: true }
+  { id: 1, nombre: 'Producto 1', descripcion: 'Descripción 1', imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'galletita.jpg.webp'))}`, precio: 10.0, insumos: [{ insumoId: 1, cantidad: 2 }, { insumoId: 2, cantidad: 1 }], borrado: false },
+  { id: 2, nombre: 'Producto 2', descripcion: 'Descripción 2', imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'images.jpg'))}`, precio: 20.0, insumos: [{ insumoId: 3, cantidad: 4 }], borrado: false },
+  { id: 3, nombre: 'Producto 3', descripcion: 'Descripción 3', imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'pan-papa-web-3.webp'))}`, precio: 25.0, insumos: [], borrado: true }
 ];
 
 exports.getProductos = (req, res) => {
