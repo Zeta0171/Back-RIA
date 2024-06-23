@@ -83,11 +83,71 @@ let productos = [
 ];
 
 
+exports.getProductosPaginado = (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 6;
+
+    if (page < 1 || pageSize < 1) {
+      return res.status(400).json({ message: 'Invalid page or pageSize parameter' });
+    }
+
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+
+    if (startIndex >= productos.length) {
+      return res.status(400).json({ message: 'Page number exceeds total pages' });
+    }
+
+    const paginatedProductos = productos.slice(startIndex, endIndex);
+
+    res.json({
+      productos: paginatedProductos,
+      totalItems: productos.length,
+      currentPage: page,
+      totalPages: Math.ceil(productos.length / pageSize)
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+};
+
+// Obtener productos activos paginados
+exports.getProductosActivosPaginado = (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 10;
+
+    if (page < 1 || pageSize < 1) {
+      return res.status(400).json({ message: 'Invalid page or pageSize parameter' });
+    }
+
+    const productosActivos = productos.filter(p => !p.borrado);
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+
+    if (startIndex >= productosActivos.length) {
+      return res.status(400).json({ message: 'Page number exceeds total pages' });
+    }
+
+    const paginatedProductos = productosActivos.slice(startIndex, endIndex);
+
+    res.json({
+      productos: paginatedProductos,
+      totalItems: productosActivos.length,
+      currentPage: page,
+      totalPages: Math.ceil(productosActivos.length / pageSize)
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+};
+
+// Funciones existentes
 exports.getProductos = (req, res) => {
   res.json(productos);
 };
 
-// Nueva función para listar solo los productos no borrados
 exports.getProductosActivos = (req, res) => {
   const productosActivos = productos.filter(p => !p.borrado);
   res.json(productosActivos);
@@ -97,9 +157,9 @@ exports.getProductoById = (req, res) => {
   const { id } = req.params;
   const producto = productos.find(p => p.id == id && !p.borrado);
   if (producto) {
-      res.json(producto);
+    res.json(producto);
   } else {
-      res.status(404).json({ message: 'Producto no encontrado' });
+    res.status(404).json({ message: 'Producto no encontrado' });
   }
 };
 
@@ -117,10 +177,10 @@ exports.updateProducto = (req, res) => {
   const updatedProducto = req.body;
   const productoIndex = productos.findIndex(p => p.id == id && !p.borrado);
   if (productoIndex !== -1) {
-      productos[productoIndex] = { ...productos[productoIndex], ...updatedProducto };
-      res.json(productos[productoIndex]);
+    productos[productoIndex] = { ...productos[productoIndex], ...updatedProducto };
+    res.json(productos[productoIndex]);
   } else {
-      res.status(404).json({ message: 'Producto no encontrado' });
+    res.status(404).json({ message: 'Producto no encontrado' });
   }
 };
 
@@ -128,10 +188,10 @@ exports.deleteProducto = (req, res) => {
   const { id } = req.params;
   const productoIndex = productos.findIndex(p => p.id == id && !p.borrado);
   if (productoIndex !== -1) {
-      productos[productoIndex].borrado = true;
-      res.json({ message: 'Producto borrado lógicamente' });
+    productos[productoIndex].borrado = true;
+    res.json({ message: 'Producto borrado lógicamente' });
   } else {
-      res.status(404).json({ message: 'Producto no encontrado' });
+    res.status(404).json({ message: 'Producto no encontrado' });
   }
 };
 
@@ -139,10 +199,9 @@ exports.activateProducto = (req, res) => {
   const { id } = req.params;
   const productoIndex = productos.findIndex(p => p.id == id && p.borrado);
   if (productoIndex !== -1) {
-      productos[productoIndex].borrado = false;
-      res.json(productos[productoIndex]);
+    productos[productoIndex].borrado = false;
+    res.json(productos[productoIndex]);
   } else {
-      res.status(404).json({ message: 'Producto no encontrado o ya activo' });
+    res.status(404).json({ message: 'Producto no encontrado o ya activo' });
   }
 };
-

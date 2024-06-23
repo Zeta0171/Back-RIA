@@ -3,16 +3,19 @@ const router = express.Router();
 const productosController = require('../controllers/productosController');
 const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
 
+router.get('/paginado', verifyToken, isAdmin, (req, res) => {
+  productosController.getProductosPaginado(req, res);
+});
+
+
+router.get('/activos/paginado', verifyToken, isUser, (req, res) => {
+  productosController.getProductosActivosPaginado(req, res);
+});
+
 router.get('/', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Obtiene la lista de productos' */
   /* #swagger.tags = ['Productos'] */
   productosController.getProductos(req, res);
-});
-
-router.get('/activos', verifyToken, isUser, (req, res) => {
-  /* #swagger.summary = 'Obtiene la lista de productos no borrados' */
-  /* #swagger.tags = ['Productos'] */
-  productosController.getProductosActivos(req, res);
 });
 
 router.get('/:id', verifyToken, isAdmin, (req, res) => {
