@@ -55,6 +55,13 @@ const getUsuariosPaginado = (req, res) => {
 
 const register = async (req, res) => {
   const { email, password, role, telefono } = req.body;
+
+  const userExists = usuarios.find(u => u.email === email);
+  if (userExists) {
+    return res.status(400).json({ message: 'El correo electrónico ya está registrado.' });
+  }
+
+
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = {
     id: usuarios.length ? usuarios[usuarios.length - 1].id + 1 : 1,
@@ -71,12 +78,16 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = usuarios.find(u => u.email === email);
-  if (user && await bcrypt.compare(password, user.password)) {
-    const token = generateToken(user);
-    res.json({ token, nombre: user.email, role: user.role, telefono: user.telefono });
-  } else {
-    res.status(401).json({ message: 'Invalid credentials' });
+  if (user) {
+    if (!user.enabled) {
+      return res.status(403).json({ message: 'User account is disabled' });
+    }
+    if (await bcrypt.compare(password, user.password)) {
+      const token = generateToken(user);
+      return res.json({ token, nombre: user.email, role: user.role, telefono: user.telefono });
+    }
   }
+  res.status(401).json({ message: 'Invalid credentials' });
 };
 
 const changePassword = async (req, res) => {
