@@ -7,9 +7,13 @@ router.get('/', verifyToken, isPanadero, (req, res) => {
   insumoController.getInsumos(req, res);
 });
 
+router.get('/activos', verifyToken, isPanadero, (req,res) => {
+  insumoController.getInsumosActivos(req,res);
+}); 
+
 router.get('/paginado', verifyToken, isAdmin, (req, res) => {
     insumoController.getInsumosPaginado(req, res);
-  });
+});
 
 router.get('/:id', insumoController.getInsumoById);
 
@@ -18,6 +22,10 @@ router.post('/', verifyToken, isAdmin, (req, res) => {
 });
 
 router.put('/:id', insumoController.updateInsumo);
+
+router.put('/restore/:id', verifyToken, isAdmin,(req,res) =>{
+  insumoController.restoreInsumo(req,res);
+}); 
 
 router.delete('/:id', verifyToken, isAdmin, (req, res) => {
   insumoController.deleteInsumo(req, res);

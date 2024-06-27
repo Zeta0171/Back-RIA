@@ -9,9 +9,9 @@ const generateToken = (user) => {
 // Función para crear usuarios por defecto
 const createDefaultUsers = async () => {
   const defaultUsers = [
-    { email: 'admin@example.com', password: 'admin123', role: 'ADMIN', telefono: '123456789' },
-    { email: 'panadero@example.com', password: 'panadero123', role: 'PANADERO', telefono: '987654321' },
-    { email: 'user@example.com', password: 'user123', role: 'USER', telefono: '456123789' },
+    {id: 1, email: 'admin@example.com', password: 'admin123', role: 'ADMIN', telefono: '123456789',enabled: true },
+    {id: 2, email: 'panadero@example.com', password: 'panadero123', role: 'PANADERO', telefono: '987654321',enabled: true },
+    {id: 3, email: 'user@example.com', password: 'user123', role: 'USER', telefono: '456123789',enabled: true },
   ];
 
   for (const user of defaultUsers) {
@@ -30,6 +30,28 @@ const createDefaultUsers = async () => {
 
 // Llama a la función para crear usuarios por defecto al inicio
 createDefaultUsers();
+
+const getUsuarios = (req, res) => {
+  res.json(usuarios);
+};
+
+const getUsuariosPaginado = (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 10;
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+
+  const paginatedUsers = usuarios.slice(start, end);
+  const totalUsers = usuarios.length;
+
+  res.json({
+    usuarios: paginatedUsers,
+    totalItems: totalUsers,
+    currentPage: page,
+    pageSize: pageSize,
+    totalPages: Math.ceil(totalUsers / pageSize),
+  });
+};
 
 const register = async (req, res) => {
   const { email, password, role, telefono } = req.body;
@@ -108,4 +130,6 @@ module.exports = {
   forgotPassword,
   enableUser,
   disableUser,
+  getUsuarios,
+  getUsuariosPaginado
 };

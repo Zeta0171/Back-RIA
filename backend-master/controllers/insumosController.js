@@ -1,5 +1,5 @@
 let insumos = [
-    { id: 1, nombre: 'Pan de molde', descripcion: 'Pan de molde sin corteza', unidad_medida: 'unidades' },
+    { id: 1, nombre: 'Pan de molde', descripcion: 'Pan de molde sin corteza', unidad_medida: 'unidades', },
     { id: 2, nombre: 'Jamón', descripcion: 'Jamón cocido en rebanadas', unidad_medida: 'gramos' },
     { id: 3, nombre: 'Queso', descripcion: 'Queso en rebanadas', unidad_medida: 'gramos' },
     { id: 4, nombre: 'Manteca', descripcion: 'Mantequilla a temperatura ambiente', unidad_medida: 'gramos' },
@@ -24,6 +24,12 @@ let insumos = [
   exports.getInsumos = (req, res) => {
     res.json(insumos);
   };
+  
+  exports.getInsumosActivos = (req, res) => {
+    const insumosActivos = insumos.filter(insumo => !insumo.isDeleted);
+    res.json(insumosActivos);
+  };
+  
   
   exports.getInsumoById = (req, res) => {
     const { id } = req.params;
@@ -56,15 +62,28 @@ let insumos = [
   
   exports.deleteInsumo = (req, res) => {
     const { id } = req.params;
-    const insumoIndex = insumos.findIndex(i => i.id == id);
-    if (insumoIndex !== -1) {
-      const deletedInsumo = insumos.splice(insumoIndex, 1);
-      res.json(deletedInsumo);
+    const insumo = insumos.find(i => i.id == id);
+
+    if (insumo) {
+        insumo.isDeleted = true;
+        res.json(insumo);
     } else {
-      res.status(404).json({ message: 'Insumo no encontrado' });
+        res.status(404).json({ message: 'Insumo no encontrado' });
     }
   };
-  
+
+  exports.restoreInsumo = (req, res) => {
+    const { id } = req.params;
+    const insumo = insumos.find(i => i.id == id);
+
+    if (insumo) {
+        insumo.isDeleted = false;
+        res.json(insumo);
+    } else {
+        res.status(404).json({ message: 'Insumo no encontrado' });
+    }
+  };
+ 
   exports.getInsumosPaginado = (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;

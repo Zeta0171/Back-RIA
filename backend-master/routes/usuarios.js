@@ -68,4 +68,24 @@ router.post('/disable-user', (req, res) => {
   usuariosController.disableUser(req, res);
 });
 
+router.get('/', (req, res) => {
+  usuariosController.getUsuarios(req, res);
+});
+
+router.get('/paginado', (req, res) => {
+  /* #swagger.summary = 'Obtiene una lista paginada de usuarios' */
+  /* #swagger.tags = ['Usuarios'] */
+  /* #swagger.parameters['page'] = {
+        in: 'query',
+        description: 'Número de página',
+        type: 'integer'
+    } */
+  /* #swagger.parameters['pageSize'] = {
+        in: 'query',
+        description: 'Número de usuarios por página',
+        type: 'integer'
+    } */
+  usuariosController.getUsuariosPaginado(req, res);
+});
+
 module.exports = router;
