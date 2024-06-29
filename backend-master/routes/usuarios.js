@@ -88,4 +88,22 @@ router.get('/paginado', (req, res) => {
   usuariosController.getUsuariosPaginado(req, res);
 });
 
+router.post('/role', (req, res) => {
+  /* #swagger.summary = 'Obtiene una lista paginada de usuarios' */
+  /* #swagger.tags = ['Usuarios'] */
+  /* #swagger.parameters['page'] = {
+        in: 'query',
+        description: 'Número de página',
+        type: 'integer'
+    } */
+  /* #swagger.parameters['pageSize'] = {
+        in: 'query',
+        description: 'Número de usuarios por página',
+        type: 'integer'
+    } */
+  usuariosController.changeUserRole(req, res);
+});
+
+
+
 module.exports = router;

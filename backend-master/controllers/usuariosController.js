@@ -134,6 +134,22 @@ const disableUser = (req, res) => {
   }
 };
 
+const changeUserRole = (req, res) => {
+  const { id, newRole } = req.body;
+  const validRoles = ['ADMIN', 'PANADERO', 'USER'];
+  if (!validRoles.includes(newRole)) {
+    return res.status(400).json({ message: 'Invalid role' });
+  }
+
+  const user = usuarios.find(u => u.id == id);
+  if (user) {
+    user.role = newRole;
+    res.json({ message: 'User role updated', user });
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -142,5 +158,6 @@ module.exports = {
   enableUser,
   disableUser,
   getUsuarios,
-  getUsuariosPaginado
+  getUsuariosPaginado,
+  changeUserRole
 };
