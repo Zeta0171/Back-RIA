@@ -105,8 +105,19 @@ const forgotPassword = (req, res) => {
   const { email } = req.body;
   const user = usuarios.find(u => u.email === email);
   if (user) {
-    // Aquí podrías enviar un correo electrónico con un enlace para restablecer la contraseña
-    res.json({ message: 'Password reset link sent' });
+    const resetLink = `http://localhost:4200/reset-password/${user.id}`;
+    res.json({ message: 'Password reset link sent', resetLink });
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  const { id, newPassword } = req.body;
+  const user = usuarios.find(u => u.id == id);
+  if (user) {
+    user.password = await bcrypt.hash(newPassword, 10);
+    res.json({ message: 'Password updated' });
   } else {
     res.status(404).json({ message: 'User not found' });
   }
@@ -150,6 +161,8 @@ const changeUserRole = (req, res) => {
   }
 };
 
+
+
 module.exports = {
   register,
   login,
@@ -159,5 +172,6 @@ module.exports = {
   disableUser,
   getUsuarios,
   getUsuariosPaginado,
-  changeUserRole
+  changeUserRole,
+  resetPassword
 };
