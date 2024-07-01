@@ -84,7 +84,7 @@ const login = async (req, res) => {
     }
     if (await bcrypt.compare(password, user.password)) {
       const token = generateToken(user);
-      return res.json({ token, nombre: user.email, role: user.role, telefono: user.telefono });
+      return res.json({ token, id: user.id, nombre: user.email, role: user.role, telefono: user.telefono });
     }
   }
   res.status(401).json({ message: 'Invalid credentials' });
@@ -93,6 +93,7 @@ const login = async (req, res) => {
 const changePassword = async (req, res) => {
   const { id, oldPassword, newPassword } = req.body;
   const user = usuarios.find(u => u.id == id);
+  console.log(user.email);
   if (user && await bcrypt.compare(oldPassword, user.password)) {
     user.password = await bcrypt.hash(newPassword, 10);
     res.json({ message: 'Password updated' });
