@@ -77,7 +77,156 @@ let productos = [
       { insumoId: 18, cantidad: 10 }
     ], 
     borrado: false 
-  }
+  },
+  { 
+    id: 5, 
+    nombre: 'Jesuitas', 
+    descripcion: 'Jesuitas con jamón y queso', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'Jesuitas.jpg'))}`, 
+    precio: 400.00, 
+    insumos: [
+      { insumoId: 19, cantidad: 2 },  // Harina de trigo (500g)
+      { insumoId: 2, cantidad: 20 },  // Jamón cocido en lonchas (200g)
+      { insumoId: 3, cantidad: 20 },  // Queso en lonchas (200g)
+      { insumoId: 20, cantidad: 2 },  // Huevos duros (3 unidades)
+      { insumoId: 21, cantidad: 2 },  // Azúcar glas (200g)
+      { insumoId: 14, cantidad: 2 }   // Zumo de limón (2 cucharadas)
+    ], 
+    borrado: false 
+  },
+  { 
+    id: 6, 
+    nombre: 'Turrón Blanco con Maní', 
+    descripcion: 'Turrón blanco con maní', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'TurronBlanco.jpg'))}`, 
+    precio: 500.00, 
+    insumos: [
+      { insumoId: 22, cantidad: 200 },  // Maní tostado y pelado (200g)
+      { insumoId: 10, cantidad: 100 },  // Azúcar (100g)
+      { insumoId: 23, cantidad: 100 },  // Miel (100g)
+      { insumoId: 19, cantidad: 2 },    // Claras de huevo (2 unidades)
+      { insumoId: 12, cantidad: 1 },    // Esencia de vainilla (1 cucharadita)
+      { insumoId: 24, cantidad: 50 }    // Papel de arroz (opcional)
+    ], 
+    borrado: false 
+  },
+  { 
+    id: 7, 
+    nombre: 'Turrón de Chocolate con Maní', 
+    descripcion: 'Turrón de chocolate con maní', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'TurronNegro.jpg'))}`, 
+    precio: 550.00, 
+    insumos: [
+      { insumoId: 25, cantidad: 300 },  // Chocolate negro (300g)
+      { insumoId: 22, cantidad: 200 },  // Maní tostado y pelado (200g)
+      { insumoId: 10, cantidad: 100 },  // Azúcar (100g)
+      { insumoId: 4, cantidad: 50 },    // Manteca de cacao (50g)
+      { insumoId: 12, cantidad: 1 }     // Esencia de vainilla (1 cucharadita)
+    ], 
+    borrado: false 
+  },
+  {
+    id: 8, 
+    nombre: 'Tarta de Fiambre', 
+    descripcion: 'Tarta rellena de jamón y queso', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'TartaFiambre.jpg'))}`, 
+    precio: 450.00, 
+    insumos: [
+      { insumoId: 26, cantidad: 400 },  // Masa para tarta (400g)
+      { insumoId: 2, cantidad: 200 },   // Jamón (200g)
+      { insumoId: 3, cantidad: 200 },   // Queso (200g)
+      { insumoId: 4, cantidad: 100 },   // Manteca (100g)
+      { insumoId: 19, cantidad: 3 },    // Huevos crudos (3 unidades)
+      { insumoId: 27, cantidad: 1 }     // Crema de leche (1 taza)
+    ], 
+    borrado: false 
+  },
+  {
+    id: 9, 
+    nombre: 'Pizza Rellena', 
+    descripcion: 'Pizza rellena con múltiples ingredientes', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'PizzaRellena.jpg'))}`, 
+    precio: 600.00, 
+    insumos: [
+      { insumoId: 28, cantidad: 500 },  // Masa para pizza (500g)
+      { insumoId: 2, cantidad: 150 },   // Jamón (150g)
+      { insumoId: 3, cantidad: 150 },   // Queso (150g)
+      { insumoId: 6, cantidad: 2 },     // Tomates (2 unidades)
+      { insumoId: 7, cantidad: 5 },     // Hojas de lechuga (5 hojas)
+      { insumoId: 8, cantidad: 50 },    // Mayonesa (50g)
+      { insumoId: 29, cantidad: 200 }   // Salsa de tomate (200g)
+    ], 
+    borrado: false 
+  },
+
+  {
+    id: 10, 
+    nombre: 'Pascualina', 
+    descripcion: 'Pascualina de acelga y ricota', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'Pascualina.jpg'))}`, 
+    precio: 500.00, 
+    insumos: [
+      { insumoId: 26, cantidad: 500 },  // Masa para tarta (500g)
+      { insumoId: 30, cantidad: 300 },  // Acelga (300g)
+      { insumoId: 31, cantidad: 200 },  // Ricota (200g)
+      { insumoId: 19, cantidad: 4 },    // Huevos crudos (4 unidades)
+      { insumoId: 27, cantidad: 1 },    // Crema de leche (1 taza)
+      { insumoId: 4, cantidad: 50 }     // Manteca (50g)
+    ], 
+    borrado: false 
+  },
+
+  {
+    id: 11, 
+    nombre: 'Masas Finas Surtidas (kg)', 
+    descripcion: 'Variedad de masas finas', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'MasasFinasSurtidas.jpg'))}`, 
+    precio: 900.00, 
+    insumos: [
+      { insumoId: 32, cantidad: 200 },  // Masa de hojaldre (200g)
+      { insumoId: 33, cantidad: 150 },  // Crema pastelera (150g)
+      { insumoId: 34, cantidad: 100 },  // Chocolate (100g)
+      { insumoId: 35, cantidad: 50 },   // Dulce de leche (50g)
+      { insumoId: 36, cantidad: 50 },   // Frutas confitadas (50g)
+      { insumoId: 37, cantidad: 30 }    // Almendras (30g)
+    ], 
+    borrado: false 
+  },
+
+  {
+    id: 12, 
+    nombre: 'Tarta Chivito', 
+    descripcion: 'Tarta con carne, jamón, queso y más', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'TartaChivito.jpg'))}`, 
+    precio: 500.00, 
+    insumos: [
+      { insumoId: 26, cantidad: 400 },  // Masa para tarta (400g)
+      { insumoId: 2, cantidad: 150 },   // Jamón (150g)
+      { insumoId: 3, cantidad: 150 },   // Queso (150g)
+      { insumoId: 38, cantidad: 200 },  // Carne (200g)
+      { insumoId: 4, cantidad: 100 },   // Manteca (100g)
+      { insumoId: 6, cantidad: 2 },     // Tomates (2 unidades)
+      { insumoId: 19, cantidad: 3 },    // Huevos crudos (3 unidades)
+      { insumoId: 27, cantidad: 1 }     // Crema de leche (1 taza)
+    ], 
+    borrado: false 
+  },
+
+  {
+    id: 13, 
+    nombre: 'Pizza con Salsa', 
+    descripcion: 'Pizza con salsa de tomate y queso', 
+    imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'Pizza.jpg'))}`, 
+    precio: 350.00, 
+    insumos: [
+      { insumoId: 28, cantidad: 500 },  // Masa para pizza (500g)
+      { insumoId: 3, cantidad: 200 },   // Queso (200g)
+      { insumoId: 29, cantidad: 300 }   // Salsa de tomate (300g)
+    ], 
+    borrado: false 
+  },
+
+
 ];
 
 
