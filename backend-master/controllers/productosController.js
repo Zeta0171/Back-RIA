@@ -1,12 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// Función para convertir una imagen a base64
 const imageToBase64 = (filePath) => {
   return fs.readFileSync(filePath, { encoding: 'base64' });
 };
 
-// Ruta de las imágenes
 const imagesDir = path.join(__dirname, '../imagenes');
 
 let productos = [
@@ -47,16 +45,16 @@ let productos = [
     imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'budin.webp'))}`, 
     precio: 200.00, 
     insumos: [
-      { insumoId: 9, cantidad: 200 },     // Harina (entre 1 y 15 gramos)
-      { insumoId: 10, cantidad: 100 },    // Azúcar (entre 1 y 15 gramos)
-      { insumoId: 11, cantidad: 300 },    // Leche (entre 1 y 15 mililitros)
-      { insumoId: 12, cantidad: 5 },      // Esencia de vainilla (entre 1 y 15 mililitros)
-      { insumoId: 13, cantidad: 2 },      // Polvo de hornear (entre 1 y 15 gramos)
-      { insumoId: 14, cantidad: 3 },      // Limón (entre 1 y 15 unidades)
-      { insumoId: 15, cantidad: 50 },     // Pasas (entre 1 y 15 gramos)
-      { insumoId: 16, cantidad: 30 },     // Frutas confitadas (entre 1 y 15 gramos)
-      { insumoId: 17, cantidad: 10 },     // Almendras (entre 1 y 15 gramos)
-      { insumoId: 18, cantidad: 8 }       // Nueces (entre 1 y 15 gramos)
+      { insumoId: 9, cantidad: 200 },
+      { insumoId: 10, cantidad: 100 },
+      { insumoId: 11, cantidad: 300 },
+      { insumoId: 12, cantidad: 5 },
+      { insumoId: 13, cantidad: 2 },
+      { insumoId: 14, cantidad: 3 },
+      { insumoId: 15, cantidad: 50 },
+      { insumoId: 16, cantidad: 30 },
+      { insumoId: 17, cantidad: 10 },
+      { insumoId: 18, cantidad: 8 }
     ], 
     borrado: false 
   },
@@ -67,16 +65,16 @@ let productos = [
     imagen: `data:image/png;base64,${imageToBase64(path.join(imagesDir, 'panettone.jpg'))}`, 
     precio: 300.00, 
     insumos: [
-      { insumoId: 9, cantidad: 300 },     // Harina (entre 1 y 15 gramos)
-      { insumoId: 10, cantidad: 150 },    // Azúcar (entre 1 y 15 gramos)
-      { insumoId: 11, cantidad: 250 },    // Leche (entre 1 y 15 mililitros)
-      { insumoId: 12, cantidad: 8 },      // Esencia de vainilla (entre 1 y 15 mililitros)
-      { insumoId: 13, cantidad: 3 },      // Polvo de hornear (entre 1 y 15 gramos)
-      { insumoId: 14, cantidad: 5 },      // Limón (entre 1 y 15 unidades)
-      { insumoId: 15, cantidad: 80 },     // Pasas (entre 1 y 15 gramos)
-      { insumoId: 16, cantidad: 40 },     // Frutas confitadas (entre 1 y 15 gramos)
-      { insumoId: 17, cantidad: 12 },     // Almendras (entre 1 y 15 gramos)
-      { insumoId: 18, cantidad: 10 }      // Nueces (entre 1 y 15 gramos)
+      { insumoId: 9, cantidad: 300 },
+      { insumoId: 10, cantidad: 150 },
+      { insumoId: 11, cantidad: 250 },
+      { insumoId: 12, cantidad: 8 },
+      { insumoId: 13, cantidad: 3 },
+      { insumoId: 14, cantidad: 5 },
+      { insumoId: 15, cantidad: 80 },
+      { insumoId: 16, cantidad: 40 },
+      { insumoId: 17, cantidad: 12 },
+      { insumoId: 18, cantidad: 10 }
     ], 
     borrado: false 
   }
@@ -112,7 +110,6 @@ exports.getProductosPaginado = (req, res) => {
   }
 };
 
-// Obtener productos activos paginados
 exports.getProductosActivosPaginado = (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -143,7 +140,6 @@ exports.getProductosActivosPaginado = (req, res) => {
   }
 };
 
-// Funciones existentes
 exports.getProductos = (req, res) => {
   res.json(productos);
 };

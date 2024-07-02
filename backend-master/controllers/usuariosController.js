@@ -6,7 +6,6 @@ const generateToken = (user) => {
   return jwt.sign({ id: user.id, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
 };
 
-// Función para crear usuarios por defecto
 const createDefaultUsers = async () => {
   const defaultUsers = [
     {id: 1, email: 'admin@example.com', password: 'admin123', role: 'ADMIN', telefono: '123456789',enabled: true },
@@ -28,7 +27,6 @@ const createDefaultUsers = async () => {
   }
 };
 
-// Llama a la función para crear usuarios por defecto al inicio
 createDefaultUsers();
 
 const getUsuarios = (req, res) => {
