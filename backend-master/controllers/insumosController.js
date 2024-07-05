@@ -117,3 +117,12 @@ let insumos = [
     });
   };
   
+  exports.getInsumosByIds = async (req, res) => {
+    try {
+      const ids = req.query.ids.split(',').map(id => mongoose.Types.ObjectId(id));
+      const insumos = await Insumo.find({ _id: { $in: ids } });
+      res.json(insumos);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };

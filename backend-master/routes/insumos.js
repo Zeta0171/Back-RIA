@@ -33,4 +33,8 @@ router.delete('/:id', verifyToken, isAdmin, (req, res) => {
   insumoController.deleteInsumo(req, res);
 });
 
+router.get('/batch', verifyToken, isAdmin,(req, res) => {
+  insumoController.getInsumosByIds(req,res);
+});
+
 module.exports = router;
