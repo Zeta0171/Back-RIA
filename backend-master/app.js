@@ -5,6 +5,7 @@ const hospitalesRoutes = require('./routes/hospitales');
 const usuariosRoutes = require('./routes/usuarios');
 const productosRoutes = require('./routes/productos');
 const insumoRoutes = require('./routes/insumos');
+const pedidosRoutes = require('./routes/pedidos');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger_output.json');
 
@@ -19,6 +20,7 @@ app.use('/hospitales', hospitalesRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/productos', productosRoutes);
 app.use('/insumos', insumoRoutes);
+app.use('/pedidos', pedidosRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.get('/', (req, res) => {

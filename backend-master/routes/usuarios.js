@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usuariosController = require('../controllers/usuariosController');
+const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
 
 router.post('/register', (req, res) => {
   /* #swagger.summary = 'Registra un nuevo usuario' */
@@ -24,7 +25,7 @@ router.post('/login', (req, res) => {
   usuariosController.login(req, res);
 });
 
-router.post('/change-password', (req, res) => {
+router.post('/change-password', verifyToken, isUser, (req, res) => {
   /* #swagger.summary = 'Cambia la contraseña del usuario' */
   /* #swagger.tags = ['Usuarios'] */
   /* #swagger.parameters['body'] = {
@@ -57,7 +58,7 @@ router.post('/reset-password', (req, res) => {
   usuariosController.resetPassword(req, res);
 });
 
-router.post('/enable-user', (req, res) => {
+router.post('/enable-user', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Habilita un usuario' */
   /* #swagger.tags = ['Usuarios'] */
   /* #swagger.parameters['body'] = {
@@ -68,7 +69,7 @@ router.post('/enable-user', (req, res) => {
   usuariosController.enableUser(req, res);
 });
 
-router.post('/disable-user', (req, res) => {
+router.post('/disable-user', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Deshabilita un usuario' */
   /* #swagger.tags = ['Usuarios'] */
   /* #swagger.parameters['body'] = {
@@ -83,7 +84,7 @@ router.get('/', (req, res) => {
   usuariosController.getUsuarios(req, res);
 });
 
-router.get('/paginado', (req, res) => {
+router.get('/paginado', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Obtiene una lista paginada de usuarios' */
   /* #swagger.tags = ['Usuarios'] */
   /* #swagger.parameters['page'] = {
@@ -99,7 +100,7 @@ router.get('/paginado', (req, res) => {
   usuariosController.getUsuariosPaginado(req, res);
 });
 
-router.post('/role', (req, res) => {
+router.post('/role', verifyToken, isAdmin, (req, res) => {
   /* #swagger.summary = 'Obtiene una lista paginada de usuarios' */
   /* #swagger.tags = ['Usuarios'] */
   /* #swagger.parameters['page'] = {
