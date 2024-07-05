@@ -3,7 +3,7 @@ let pedidos = [
       id: 1,
       fechaPedido: new Date('2024-07-05'),
       fechaEntrega: new Date('2024-07-06'),
-      estado: 'En proceso',
+      estado: 'Pendiente',
       userId: 1,
       productos: [
         { productoId: 1, cantidad: 2 },
@@ -14,7 +14,7 @@ let pedidos = [
       id: 2,
       fechaPedido: new Date('2024-07-04'),
       fechaEntrega: new Date('2024-07-07'),
-      estado: 'Pendiente',
+      estado: 'En preparacion',
       userId: 2,
       productos: [
         { productoId: 5, cantidad: 1 },
@@ -25,7 +25,7 @@ let pedidos = [
       id: 3,
       fechaPedido: new Date('2024-07-03'),
       fechaEntrega: new Date('2024-07-05'),
-      estado: 'Entregado',
+      estado: 'Listo para recoger',
       userId: 3,
       productos: [
         { productoId: 2, cantidad: 1 },
