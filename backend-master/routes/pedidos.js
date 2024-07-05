@@ -11,8 +11,8 @@ router.get('/:id', verifyToken, isUser, (req, res) => {
   pedidosController.getPedidoById(req, res);
 });
 
-router.get('/pedido/:userId',verifyToken, isUser, (req,res) =>{
-    pedidosController.getPedidosByUserId(req,res);
+router.get('/usuario/:userId',verifyToken, isUser, (req,res) =>{
+  pedidosController.getPedidosByUserId(req,res);
 })
 
 router.post('/', verifyToken, isUser, (req, res) => {

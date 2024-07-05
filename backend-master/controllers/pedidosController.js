@@ -1,37 +1,37 @@
 let pedidos = [
-    {
-      id: 1,
-      fechaPedido: new Date('2024-07-05'),
-      fechaEntrega: new Date('2024-07-06'),
-      estado: 'Pendiente',
-      userId: 1,
-      productos: [
+     {
+     id: 1,
+   fechaPedido: new Date('2024-07-05'),
+    fechaEntrega: new Date('2024-07-06'),
+     estado: 'Pendiente',
+       userId: 1,
+       productos: [
         { productoId: 1, cantidad: 2 },
         { productoId: 3, cantidad: 1 }
       ]
     },
     {
-      id: 2,
-      fechaPedido: new Date('2024-07-04'),
-      fechaEntrega: new Date('2024-07-07'),
-      estado: 'En preparacion',
-      userId: 2,
-      productos: [
+     id: 2,
+       fechaPedido: new Date('2024-07-04'),
+       fechaEntrega: new Date('2024-07-07'),
+       estado: 'En preparacion',
+       userId: 2,
+       productos: [
         { productoId: 5, cantidad: 1 },
         { productoId: 6, cantidad: 3 }
       ]
-    },
-    {
-      id: 3,
-      fechaPedido: new Date('2024-07-03'),
-      fechaEntrega: new Date('2024-07-05'),
-      estado: 'Listo para recoger',
-      userId: 3,
-      productos: [
-        { productoId: 2, cantidad: 1 },
-        { productoId: 4, cantidad: 2 }
-      ]
-    }
+     },
+   {
+     id: 3,
+       fechaPedido: new Date('2024-07-03'),
+       fechaEntrega: new Date('2024-07-05'),
+       estado: 'Listo para recoger',
+       userId: 3,
+       productos: [
+         { productoId: 2, cantidad: 1 },
+         { productoId: 4, cantidad: 2 }
+       ]
+     }
   ];
 
 exports.getPedidos = (req, res) => {

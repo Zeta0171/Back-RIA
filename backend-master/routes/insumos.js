@@ -15,8 +15,10 @@ router.get('/paginado', verifyToken, isAdmin, (req, res) => {
     insumoController.getInsumosPaginado(req, res);
 });
 
-router.get('/:id', insumoController.getInsumoById);
-
+router.get('/:id', verifyToken, isPanadero, (req, res)=> {
+  insumoController.getInsumoById(req, res);
+});
+   
 router.post('/', verifyToken, isAdmin, (req, res) => {
   insumoController.createInsumo(req, res);
 });
