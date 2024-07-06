@@ -65,9 +65,7 @@ exports.getPedidoById = (req, res) => {
 };
 
 exports.getPedidosByUserId = (req, res) => {
-  // Obtener userId de los parámetros de la solicitud
   const userId = parseInt(req.params.userId);
-  // Filtrar pedidos por userId
   const pedidosUsuario = pedidos.filter(pedido => pedido.userId === userId);
   res.json(pedidosUsuario);
 };
@@ -101,3 +99,5 @@ exports.deletePedido = (req, res) => {
     res.status(404).json({ message: 'Pedido no encontrado' });
   }
 };
+
+
