@@ -7,7 +7,7 @@ router.get('/', verifyToken, isPanadero, (req, res) => {
   insumoController.getInsumos(req, res);
 });
 
-router.get('/activos', verifyToken, isPanadero, (req,res) => {
+router.get('/activos', verifyToken, isUser, (req,res) => {
   insumoController.getInsumosActivos(req,res);
 }); 
 

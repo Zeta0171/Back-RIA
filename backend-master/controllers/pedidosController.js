@@ -48,15 +48,13 @@ exports.getPedidoById = (req, res) => {
   }
 };
 
-exports.getPedidosByUserId = async (req, res) => {
-    try {
-      const userId = req.params.userId;
-      const pedidos = await pedidos.find({ userId });
-      res.json(pedidos);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
-  };
+exports.getPedidosByUserId = (req, res) => {
+  // Obtener userId de los parámetros de la solicitud
+  const userId = parseInt(req.params.userId);
+  // Filtrar pedidos por userId
+  const pedidosUsuario = pedidos.filter(pedido => pedido.userId === userId);
+  res.json(pedidosUsuario);
+};
 
 exports.createPedido = (req, res) => {
   const newPedido = req.body;
