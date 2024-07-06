@@ -1,40 +1,56 @@
 let pedidos = [
-     {
-     id: 1,
-   fechaPedido: new Date('2024-07-05'),
+  {
+    id: 1,
+    fechaPedido: new Date('2024-07-05'),
     fechaEntrega: new Date('2024-07-06'),
-     estado: 'Pendiente',
-       userId: 1,
-       productos: [
-        { productoId: 1, cantidad: 2 },
-        { productoId: 3, cantidad: 1 }
-      ]
-    },
-    {
-     id: 2,
-       fechaPedido: new Date('2024-07-04'),
-       fechaEntrega: new Date('2024-07-07'),
-       estado: 'En preparacion',
-       userId: 2,
-       productos: [
-        { productoId: 5, cantidad: 1 },
-        { productoId: 6, cantidad: 3 }
-      ]
-     },
-   {
-     id: 3,
-       fechaPedido: new Date('2024-07-03'),
-       fechaEntrega: new Date('2024-07-05'),
-       estado: 'Listo para recoger',
-       userId: 3,
-       productos: [
-         { productoId: 2, cantidad: 1 },
-         { productoId: 4, cantidad: 2 }
-       ]
-     }
-  ];
+    estado: 'Pendiente',
+    userId: 1,
+    productos: [
+      { productoId: 1, cantidad: 2 },
+      { productoId: 3, cantidad: 1 }
+    ]
+  },
+  {
+    id: 2,
+    fechaPedido: new Date('2024-07-04'),
+    fechaEntrega: new Date('2024-07-07'),
+    estado: 'En preparacion',
+    userId: 2,
+    productos: [
+      { productoId: 5, cantidad: 1 },
+      { productoId: 6, cantidad: 3 }
+    ]
+  },
+  {
+    id: 3,
+    fechaPedido: new Date('2024-07-03'),
+    fechaEntrega: new Date('2024-07-05'),
+    estado: 'Listo para recoger',
+    userId: 3,
+    productos: [
+      { productoId: 2, cantidad: 1 },
+      { productoId: 4, cantidad: 2 }
+    ]
+  }
+];
+
+pedidos = pedidos.map(pedido => {
+  return {
+    ...pedido,
+    fechaPedido: formatDate(pedido.fechaPedido),
+    fechaEntrega: formatDate(pedido.fechaEntrega)
+  };
+});
+
+function formatDate(date) {
+  const year = date.getFullYear(); // Los 4 dígitos del año
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes con 2 dígitos
+  const day = date.getDate().toString().padStart(2, '0'); // Día con 2 dígitos
+  return `${year}-${month}-${day}`;
+}
 
 exports.getPedidos = (req, res) => {
+  console.log(pedidos);
   res.json(pedidos);
 };
 
