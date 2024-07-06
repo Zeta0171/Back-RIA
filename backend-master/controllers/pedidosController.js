@@ -43,9 +43,9 @@ pedidos = pedidos.map(pedido => {
 });
 
 function formatDate(date) {
-  const year = date.getFullYear(); // Los 4 dígitos del año
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes con 2 dígitos
-  const day = date.getDate().toString().padStart(2, '0'); // Día con 2 dígitos
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
 
