@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const pedidosController = require('../controllers/pedidosController');
-const { verifyToken, isAdmin, isUser } = require('../middleware/auth');
+const { verifyToken, isAdmin, isUser, isPanadero } = require('../middleware/auth');
 
-router.get('/', verifyToken, isAdmin, (req, res) => {
+router.get('/', verifyToken, isPanadero, (req, res) => {
   pedidosController.getPedidos(req, res);
 });
 
@@ -19,7 +19,7 @@ router.post('/', verifyToken, isUser, (req, res) => {
   pedidosController.createPedido(req, res);
 });
 
-router.put('/:id', verifyToken, isAdmin, (req, res) => {
+router.put('/:id', verifyToken, isPanadero, (req, res) => {
   pedidosController.updatePedido(req, res);
 });
 
